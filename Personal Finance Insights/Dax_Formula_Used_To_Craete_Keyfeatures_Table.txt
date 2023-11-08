@@ -1,0 +1,24 @@
+Title = "My Finance Dashboard"
+
+Values = SUM(Sheet1[Value]) 
+
+Total Expense = CALCULATE(SUM(Sheet1[Value]),Sheet1[Type]="Expense") 
+
+Total Income = CALCULATE(SUM(Sheet1[Value]),Sheet1[Type]="Income") 
+
+Total Savings = CALCULATE(SUM(Table1[Value]),Table1[Type]="Savings")
+
+Expense % = DIVIDE( [Total Expense], [Total Income])
+
+Savings % = DIVIDE( [Total Savings], [Total Income])
+
+Savings Target = 0.25
+
+Income LM = CALCULATE ( [Total Income], DATEADD(FinData[Date],-1,MONTH) )
+
+Income MoM % = DIVIDE([Total Income],[Income LM])
+
+Cumulative Net Worth = CALCULATE ([Total Savings],FILTER (ALL ( Table1[Date] ),Table1[Date] <= MAX ( ( Table1[Date] ) )))
+
+
+
